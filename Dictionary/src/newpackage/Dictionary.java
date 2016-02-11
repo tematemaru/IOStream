@@ -35,25 +35,5 @@ public class Dictionary {
         }
         return dictionary;
     }
-
-    //Тут в  программу добавлена возможность считывать текст из файла
-    private String[] read(String path) throws IOException {
-        String line = "";
-        BufferedReader inputStream = null;
-        try {
-            inputStream = new BufferedReader(new FileReader(path));
-            while (inputStream.read() != -1) {
-                line += inputStream.readLine().toLowerCase() + " ";
-            }
-        } catch (IOException io) {
-            System.out.print("404");
-        } finally {
-            if (inputStream.readLine() == null) {
-                inputStream.close();
-            }
-        }
-        String[] go = line.split(" ");
-        return go;
-    }
 }
 
