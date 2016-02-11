@@ -8,18 +8,17 @@ public final class Coder {
 
     public static String read(String path) throws IOException {
         String line = "";
-        BufferedReader inputStream = null;
+        byte[] input = null;
+        BufferedReader bufferedReader = null;
         try {
-            inputStream = new BufferedReader(new FileReader(path));
-
-            line = inputStream.readLine();
+            bufferedReader = new BufferedReader(new FileReader(path));
+            input = bufferedReader.readLine().getBytes("windows-1251");
         } catch (IOException io) {
-            JOptionPane.showMessageDialog(null, "404");
+            System.out.println("404");
         } finally {
-
-                inputStream.close();
+            bufferedReader.close();
         }
-        return new String(line.getBytes("UTF-16"), "windows-1251");
+        return new String(input);
     }
 
     public static void write(String data) throws IOException {

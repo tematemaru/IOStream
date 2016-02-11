@@ -7,12 +7,12 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
+
 //Тут добавлено считыванеи пути из командной строки
 public class Programm {
-    public  static Map launcher(String[]arguments) throws ParseException, org.apache.commons.cli.ParseException, IOException {
+    public static Map launcher(String[] arguments) throws ParseException, org.apache.commons.cli.ParseException, IOException {
         Map<String, Integer> testData = new HashMap<>();
-        Dictionary mydictionary = new Dictionary(Parser.input(arguments));
-        testData= mydictionary.frecuaency();
+        Dictionary.frecuaency(Parser.input(arguments));
         return testData;
     }
 }

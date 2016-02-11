@@ -6,41 +6,44 @@ import java.io.*;
 import static java.util.Collections.frequency;
 
 public class Dictionary {
-    private HashMap<String, Integer> dictionary;
-    private String[] data;
 
 
-    public Dictionary(String input) throws IOException {
-        dictionary = new HashMap();
-        if (input == null) {
-            data = null;
+    public static Map frecuaency(String path) throws IOException {
+        HashMap<String, Integer> dictionary = new HashMap<>();
+        if (path == null) {
+            System.out.print("File not found");
         } else {
-            data = read(input);
-        }
-    }
-
-    public Map frecuaency() {
-        if (data == null) {
-            return null;
-        } else {
-            for (String word : data) {
-                if (dictionary.containsKey(word)) {
-                    dictionary.put(word, dictionary.get(word) + 1);
-                } else {
-                    dictionary.put(word, 1);
+            BufferedReader bufferedReader = null;
+            try {
+                bufferedReader = new BufferedReader(new FileReader(path));
+                while (bufferedReader.read() != -1) {
+                    for (String s : bufferedReader.readLine().split(" ")) {
+                        if (dictionary.containsKey(s.toLowerCase())) {
+                            dictionary.put(s.toLowerCase(), dictionary.get(s.toLowerCase()) + 1);
+                        } else {
+                            dictionary.put(s.toLowerCase(), 1);
+                        }
+                    }
+                }
+            } catch (IOException io) {
+                System.out.print("File not found");
+            } finally {
+                if (bufferedReader.readLine() == null) {
+                    bufferedReader.close();
                 }
             }
         }
         return dictionary;
     }
-//Тут в  программу добавлена возможность считывать текст из файла
+
+    //Тут в  программу добавлена возможность считывать текст из файла
     private String[] read(String path) throws IOException {
         String line = "";
         BufferedReader inputStream = null;
         try {
             inputStream = new BufferedReader(new FileReader(path));
             while (inputStream.read() != -1) {
-                line += inputStream.readLine().toLowerCase()+" ";
+                line += inputStream.readLine().toLowerCase() + " ";
             }
         } catch (IOException io) {
             System.out.print("404");

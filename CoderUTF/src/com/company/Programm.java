@@ -12,6 +12,7 @@ class Programm {
     public static String launcher(String[] args) {
         try {
             data = Coder.read(Parser.input(args));
+            Coder.write(data);
             System.out.println(data);
         } catch (IOException e) {
             e.printStackTrace();
